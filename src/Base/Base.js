@@ -11,7 +11,7 @@ function Base ({title, description, children}) {
 
     const logoutMethod = () => {
         localStorage.removeItem("user-name")
-        history.push("/dashboard");
+        history.push("/register");
     }
 
     return (
@@ -21,42 +21,36 @@ function Base ({title, description, children}) {
                 <Button 
                 color='inherit'
                 onClick={()=>history.push("/dashboard")}>
-                 <span className="icon">🏚</span> 
+                 <span className="icon"></span> 
                  <span className="nav-name">DashBoard</span>
                 </Button>
 
                 <Button 
                 color='inherit' 
                 onClick={()=>history.push("/details")}>
-                   <span className="icon">🏚</span> 
+                   <span className="icon"></span> 
                    <span className="nav-name">Student List</span>
                    </Button>
                 <Button 
 
                 color='inherit' 
                 onClick={()=>history.push("/register")}>
-                 <span className="icon">🏚</span>  
+                 <span className="icon"></span>  
                  <span className="nav-name">Login</span> 
                 </Button>
 
-                <Button 
-                color='inherit'
-                 onClick={()=>history.push("/adkjadgjsgdjs")}>
-                  <span className="icon">🏚</span>
-                  <span className="nav-name">Nopage</span> 
-                     </Button>
                     
                      <Button 
                 color='inherit'
                  onClick={()=>history.push("/add-data")}>
-                  <span className="icon">🏚</span>
+                  <span className="icon"></span>
                   <span className="nav-name">Add Data</span> 
                      </Button>
 
                      <Button 
                   color='inherit'
                    onClick={logoutMethod}>
-                  <span className="icon">🏚</span>
+                  <span className="icon"></span>
                   <span className="nav-name">Logout</span> 
                      </Button>
 

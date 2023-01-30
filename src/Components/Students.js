@@ -8,7 +8,7 @@ import {
   import React, {useEffect} from "react";
   import { useHistory } from "react-router-dom";
   import Base from "../Base/Base";
-  
+  import './Students.css'
   
   export function StudentDetails({studentsData, setStudents}) {
     const history = useHistory();
@@ -28,7 +28,7 @@ import {
   
     return (
       <Base
-      title = "Batch Details"
+      title = "Batch B-42WD"
       description= "All students details"
       >
       <div className="containers">

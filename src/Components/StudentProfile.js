@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import Base from '../Base/Base'
-
+import './StudentProfile.css'
 const StudentProfile = ({studentsData}) => {
     const {id} = useParams();
     const student = studentsData[id]
@@ -10,12 +10,11 @@ const StudentProfile = ({studentsData}) => {
     title="Student Profile"
     description= "Inidividual Student Details"
     >
-      <div>
-        <h1>Studen-Profile </h1>
-        <h2>Studnet Name: {student.name}</h2>
-        <p> Gender: {student.gender} </p>
-        <p>Batch : {student.batch} </p>
-        <p>Years of  Experience: {student.yearsOfExperience}</p>
+      <div className='profile'>
+        <h3>Student Name: {student.name}</h3>
+        <p className='details'> Gender: {student.gender} </p>
+        <p className='details'>Batch : {student.batch} </p>
+        <p className='details'>Years of  Experience: {student.yearsOfExperience}</p>
       </div>
     </Base>
   )
