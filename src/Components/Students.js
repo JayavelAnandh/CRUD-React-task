@@ -17,14 +17,23 @@ import {
   if (!localStorage.getItem("user-name")){
     history.replace("/register")
   }
-  }, [])
+  })
   
   
     //delete a new data
-    const deleteStudentData = (studID) =>{
-     const selectedStudents = studentsData.filter((stud)=> stud.id !== studID);
+    const deleteStudentData = async(ID) =>{
+    try{
+     await fetch(`https://63ae590dceaabafcf177e630.mockapi.io/studentsData/${ID}`,{
+      method:"DELETE",
+
+     });
+     const selectedStudents = studentsData.filter((stud)=> stud.id !== ID);
      setStudents(selectedStudents); 
     }
+    catch(error){
+        console.log(error);
+    }
+  }
   
     return (
       <Base
@@ -34,8 +43,8 @@ import {
       <div className="containers">
         
         <div className="card-containers">
-          {studentsData.map((stud, id) => (
-            <Card sx={{ maxWidth: 345 }} key={id} className="card">
+          {studentsData.map((stud, index) => (
+            <Card sx={{ maxWidth: 345 }} key={index} className="card">
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Name : {stud.name}
@@ -52,10 +61,10 @@ import {
               </CardContent>
               <CardActions>
                 <Button 
-                onClick={() => history.push(`/edit/${id}`)}
+                onClick={() => history.push(`/edit/${index}`)}
                  color="secondary">Edit</Button>
                 <Button onClick={()=>deleteStudentData(stud.id)} color="error">Delete</Button>
-                <Button onClick={()=>history.push(`/student/${id}`)}>View Student</Button>
+                <Button onClick={()=>history.push(`/student/${index}`)}>View Student</Button>
               </CardActions>
             </Card>
           ))}

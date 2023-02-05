@@ -6,47 +6,60 @@ import Base from '../Base/Base';
 const EditStudents = ({studentsData,setStudents}) => {
     const history = useHistory();
     const {id} = useParams();
-    const student = studentsData[id]
+    const student = studentsData[id] 
     const [editId, setEditId] = useState("");
     const [name, setName] = useState("");
     const [batch, setBatch] = useState("");
-    const [idx, setIdx] = useState("");
     const [gender, setGender] = useState("");
     const [experience, setExperience] = useState("");
 // initial things and mountings happening
        useEffect(() => {
-        setEditId(student.id);
-         setIdx(student.id); 
+         setEditId(student.id);
          setName(student.name);
          setBatch(student.batch);
          setGender(student.gender);
          setExperience(student.yearsOfExperience);
        }, []);    
 
-    const updateStudentData = () => {
-        // select and find our student 
-        const editStudentIndex = studentsData.findIndex((stud) => stud.id === editId);
-    
-        // we need the updated object
-         const updatedObj = {
-           id,
-           name,
-           batch,
-           gender,
-           yearsOfExperience : experience
-         }
-    
-        // change the updated object in the specific array of data
-          studentsData[editStudentIndex] = updatedObj;
-        //set the students data, 
-         setStudents([...studentsData])
-         setIdx("")
-         setName("")
-         setBatch("")
-         setGender("")
-         setExperience("")
-         history.push("/details")
+    const updateStudentData = async () => {
 
+     try {
+              // we need the updated object
+      const updatedObj = {
+                name,
+                batch,
+                gender,
+                yearsOfExperience : experience
+              }
+
+      const response = await fetch(`https://63ae590dceaabafcf177e630.mockapi.io/studentsData/${editId}`, {
+        method :"PUT", 
+        body : JSON.stringify(updatedObj),
+        headers : {
+          "Content-Type":"application/json"
+        },
+      })
+      
+      const data = await response.json();
+      console.log(data)
+      console.log(response)
+      if (data) {
+              // select and find our student 
+     const editStudentIndex = studentsData.findIndex((stud) => stud.id === editId); 
+              // change the updated object in the specific array of data
+     studentsData[editStudentIndex] = updatedObj;
+              //set the students data, 
+              setStudents([...studentsData])
+               setName("")
+               setBatch("")
+               setGender("")
+               setExperience("")
+               history.push("/details")
+
+      }
+     } catch (error) {
+      console.log(error)
+     }
       }
 
 
@@ -58,13 +71,8 @@ const EditStudents = ({studentsData,setStudents}) => {
     description= "You can a Edit a student data here"
     >
               <div className="input-section">
+
      
-        
-     <TextField 
-     fullWidth label="Enter the id" 
-     onChange={(event)=>setIdx(event.target.value)}
-     value = {idx}
-     id="fullWidth" />
 
      <TextField 
      fullWidth 
@@ -106,7 +114,7 @@ const EditStudents = ({studentsData,setStudents}) => {
 
    </div>
     </Base>
-  )
-}
+  );
+};
 
 export default EditStudents;
