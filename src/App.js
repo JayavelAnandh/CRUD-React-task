@@ -21,7 +21,7 @@ function App() {
     const getStudents = async () => {
       try {
         const response = await fetch(
-          "https://63ae590dceaabafcf177e630.mockapi.io/studentsData",
+          "http://localhost:9000/students/",
           {
             method: "GET",
           }
