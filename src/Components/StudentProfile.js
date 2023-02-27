@@ -13,7 +13,7 @@ const StudentProfile = ({studentsData}) => {
       <div className='profile'>
         <h3>Student Name: {student.name}</h3>
         <p className='details'> Gender: {student.gender} </p>
-        <p className='details'>Batch : {student.batch} </p>
+        <p className='details'>Batch : {student.Batch} </p>
         <p className='details'>Years of  Experience: {student.yearsOfExperience}</p>
       </div>
     </Base>
